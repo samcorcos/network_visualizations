@@ -1,0 +1,99 @@
+.side-nav {
+  margin-right: 10%;
+}
+
+@media only screen and (min-width: 993px) {
+  .brand-logo {
+    margin-left: 10%;
+  }
+}
+
+.lead {
+  margin-top: 2rem;
+}
+
+/* Navbar background color */
+nav {
+  background-color: #0075A5;
+}
+
+/* Navbar hover over color */
+nav ul li:hover, nav ul .active {
+background-color: #0099D8;
+}
+
+
+/* Radio buttons color */
+/* [type="radio"]:checked + label:after {
+  border: 2px solid #ea454b;
+  background-color: #ea454b;
+} */
+
+/* Easiest way to set background image to page */
+/* body {
+  background: url(/images/new_york.jpg) no-repeat center center fixed;
+  background-size: cover;
+} */
+
+
+/* Network Visualization CSS */
+/* The color and width of the links */
+.link {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node {
+  cursor: move;
+  fill: #ccc;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node.fixed {
+  fill: #0075A5;
+}
+
+.node text {
+  pointer-events: none;
+  font: 10px sans-serif;
+}
+
+.sort-by {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.sort-by-button {
+  margin-bottom: 0;
+  background-color: #0075A5;
+}
+
+.sort-by-button:hover {
+  background-color: #0087BF;
+}
+
+
+ul.tabs {
+  position: relative;
+  height: 48px;
+  background-color: #FFF;
+  margin: 0 auto;
+  width: 100%;
+  white-space: nowrap;
+}
+
+ul.tabs li.tab {
+  background-color: #fff;
+}
+ul.tabs li.tab a {
+  color: #000;
+}
+ul.tabs li.tab a:hover {
+  color: #0075A5;
+}
+ul.tabs .indicator {
+  background-color: #0075A5;
+}

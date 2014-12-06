@@ -1,0 +1,4 @@
+Template.layout.rendered = function() {
+  
+
+};
