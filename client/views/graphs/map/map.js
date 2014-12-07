@@ -1,4 +1,11 @@
 Template.map.rendered = function() {
+  // jQuery tab initialization
+  $('ul.tabs').tabs();
+
+  // jQuery dropdown initialization
+  $('.dropdown-button').dropdown();
+
+
 
   var height = 600,
       width = 1000;
@@ -40,7 +47,7 @@ Template.map.rendered = function() {
     return states.statePaths;
   });
 
-  
+
 
   var uStates={};
 
@@ -67,3 +74,9 @@ Template.map.rendered = function() {
   uStates.draw("#statesvg", sampleData, tooltipHtml);
 
 }
+
+Template.map.events({
+  "click .tab": function(event, template) {
+    $(event.target).next().toggleClass("content-hidden content-display")
+  }
+})
