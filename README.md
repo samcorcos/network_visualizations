@@ -28,6 +28,7 @@ Website for network visuals
   3. Male/Female
   4. Marital Status
 - Colors should change based on the chosen category
+- In the short-term, perturb whenever a new tab is selected
 
 ##Map
 

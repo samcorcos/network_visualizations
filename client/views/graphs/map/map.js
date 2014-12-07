@@ -18,7 +18,7 @@ Template.map.rendered = function() {
     });
 
   function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
-    return "<h4>"+n+"</h4><table>"+
+    return "<h4>"+n+"</h4><table>"+w
     "<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
     "<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
     "<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
