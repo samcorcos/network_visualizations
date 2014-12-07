@@ -16,7 +16,8 @@ Website for network visuals
 - Names should appear on hover-over
 - ~~Should be sticky~~
 - Links people by "friends"
-- Filter with a search function
+- Filter with a search function that highlights/centers/focuses on a particular person in the network
+- Search function needs to have a validating dropdown. 
 
 
 ##Grouped

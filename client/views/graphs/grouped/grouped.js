@@ -80,6 +80,6 @@ Template.grouped.rendered = function() {
 // I want the information to be perturbed when you click on a new tab.
 Template.grouped.events({
   "click .tab": function(event, template) {
-    template.mousedown();
+    
   }
 })
