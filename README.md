@@ -31,7 +31,11 @@ Website for network visuals
 
 ##Map
 
+- Based on: http://bl.ocks.org/NPashaP/a74faf20b492ad377312
 - Shows concentration of people in various states
 - Colors should be darker for denser states
 - Hover-over should show some data (perhaps names of individuals?)
 - State onclick should bring the user to a separate page (or modal) that displays all the people present in the state and some details about them
+- Get state path data out of the states.js(json) file and separate logic from static data
+- Layer svgs on the states to give them depth as well as color
+- Map should filter based on certain criteria... Probably not generic search. Dropdown?
