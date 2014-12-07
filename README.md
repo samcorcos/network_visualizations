@@ -16,6 +16,7 @@ Website for network visuals
 - Names should appear on hover-over
 - ~~Should be sticky~~
 - Links people by "friends"
+- Filter with a search function
 
 
 ##Grouped
@@ -27,3 +28,10 @@ Website for network visuals
   3. Male/Female
   4. Marital Status
 - Colors should change based on the chosen category
+
+##Map
+
+- Shows concentration of people in various states
+- Colors should be darker for denser states
+- Hover-over should show some data (perhaps names of individuals?)
+- State onclick should bring the user to a separate page (or modal) that displays all the people present in the state and some details about them

@@ -1,0 +1,3 @@
+Template.map.rendered = function() {
+  
+}
