@@ -1,7 +1,7 @@
 Template.navbar.rendered = function() {
   $(".button-collapse").sideNav();
 
-  d3.select("#teneo-logo")
+  d3.select("#main-logo")
     .append("svg")
     .attr({
       width: 155,
