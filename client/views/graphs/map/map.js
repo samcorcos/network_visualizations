@@ -1,9 +1,9 @@
 Template.map.rendered = function() {
   // jQuery tab initialization
-  // $('ul.tabs').tabs();
+  $('ul.tabs').tabs();
 
   // jQuery dropdown initialization
-  // $('.dropdown-button').dropdown();
+  $('.dropdown-button').dropdown();
 
   var height = 600,
       width = 1000;
@@ -92,3 +92,8 @@ Template.map.rendered = function() {
 ///////////////////////////////
 
 }
+
+Template.map.helpers({
+  // occupations: a function that picks the top 5 occupations from the dataset
+  // interests: a function that picks the top 5 interests from the dataset
+})
