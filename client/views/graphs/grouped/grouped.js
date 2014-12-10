@@ -3,7 +3,7 @@ Template.grouped.rendered = function() {
   $('ul.tabs').tabs();
 
   var height = 600,
-      width = 600;
+      width = 1000;
 
   // This creates a "fill" property that gives pre-selected colors to up to 20 elements
 
@@ -24,12 +24,15 @@ Template.grouped.rendered = function() {
 
   })
 
-  // // This gets the right data... but it doesn't work as expected...
-  // // For whatever reason, it's console logging the JSON data, but I can't get it to return anything
-  // d3.json("grouped.json", function(error, json) {
-  //   if (error) console.error(error);
-  //   console.log(json.nodes)
-  // })
+
+  // creating a new "session variable" for all the nodes, making the json data accessible outside of hte json function
+  d3.json("data.json", function(error, people) {
+    Session.set("people", people);
+  })
+  // "session.get" is how you call the data you "set" out of the ether.
+  console.log(Session.get("people"))
+
+
 
   // This creates the force... Between the elements?
   var force = d3.layout.force()
