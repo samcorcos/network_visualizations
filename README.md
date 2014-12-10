@@ -17,7 +17,7 @@ Website for network visuals
 - ~~Should be sticky~~
 - Links people by "friends"
 - Filter with a search function that highlights/centers/focuses on a particular person in the network
-- Search function needs to have a validating dropdown. 
+- Search function needs to have a validating dropdown.
 
 
 ##Grouped

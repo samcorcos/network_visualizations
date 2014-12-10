@@ -6,11 +6,13 @@ Template.grouped.rendered = function() {
       width = 1000;
 
   // This creates a "fill" property that gives pre-selected colors to up to 20 elements
+
   var fill = d3.scale.category20(); // "category20" is a shortcut for creating 20 unique colors. there is also category10.
 
   // This is the part that I will have to change to use .json data at some point
   // Right now it's just creating 100 nodes with nothing else going on
   var nodes = d3.range(100).map(function(i) {
+
     if( i % 2 === 0) {
       return { index: i ,
         group: 'A'};
@@ -85,6 +87,7 @@ Template.grouped.rendered = function() {
       var center = groups[node.group]; // here you want to set center to the appropriate [x,y] coords
       node.x += (center.x - node.x) * k;
       node.y += (center.y - node.y) * k;
+
     });
 
     node.attr("cx", function(d) { return d.x; })
