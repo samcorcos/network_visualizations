@@ -3,7 +3,7 @@ Template.grouped.rendered = function() {
   $('ul.tabs').tabs();
 
   var height = 600,
-      width = 1000;
+      width = 600;
 
   // This creates a "fill" property that gives pre-selected colors to up to 20 elements
   var fill = d3.scale.category20();
