@@ -6,12 +6,22 @@ Template.grouped.rendered = function() {
       width = 600;
 
   // This creates a "fill" property that gives pre-selected colors to up to 20 elements
-  var fill = d3.scale.category20();
+
+  var fill = d3.scale.category20(); // "category20" is a shortcut for creating 20 unique colors. there is also category10.
 
   // This is the part that I will have to change to use .json data at some point
   // Right now it's just creating 100 nodes with nothing else going on
   var nodes = d3.range(100).map(function(i) {
-    return { index: i };
+
+    if( i % 2 === 0) {
+      return { index: i ,
+        group: 'A'};
+    }
+    else{
+      return { index: i ,
+        group: 'B'};
+    }
+
   })
 
   // // This gets the right data... but it doesn't work as expected...
@@ -60,12 +70,24 @@ Template.grouped.rendered = function() {
     .on("mousedown", mousedown);
 
 
+    var groups = { 'A': {x:123, y:456},
+                   'B': {x:456, y:123}}
   function tick(e) {
+
+    // debugger;
     // This is where the clustering happens... I'm not sure how, but it is.
-    var k = 6 * e.alpha; // "alpha" is the "cooling factor" that slows down the nodes over time. You'll notice that the nodes start the simulation moving quickly, then eventually settle into place. That's because of alpha (http://vallandingham.me/bubble_charts_in_d3.html).
-    nodes.forEach(function(o,i) {
-      o.y += i & 1 ? k : -k;
-      o.x += i & 2 ? k : -k;
+    // var k = 6 * e.alpha; // "alpha" is the "cooling factor" that slows down the nodes over time. You'll notice that the nodes start the simulation moving quickly, then eventually settle into place. That's because of alpha (http://vallandingham.me/bubble_charts_in_d3.html).
+    // nodes.forEach(function(o,i) {
+    //   o.y += i & 1 ? k : -k;
+    //   o.x += i & 2 ? k : -k;
+    // });
+
+    var k = e.alpha * .01;
+    nodes.forEach(function(node) {
+      var center = groups[node.group]; // here you want to set center to the appropriate [x,y] coords
+      node.x += (center.x - node.x) * k;
+      node.y += (center.y - node.y) * k;
+
     });
 
     node.attr("cx", function(d) { return d.x; })
