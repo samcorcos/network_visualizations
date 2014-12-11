@@ -91,14 +91,17 @@ d3.json("us.json", function(error, us) {
             .domain([1,8])
             .range(['#D1E0FF','red']);
 
+
+      ///Populating stateHeat for use in heatmap below
       var stateHeat={};
+      var paths = d3.selectAll('path')[0];
+      paths.forEach(function(path){
+        //Getting state abbreviation out of DOM
+        var classString = path.className.animVal;
+        var state = classString.slice(classString.length-2)
+        stateHeat[state]=0;
+      })
 
-      testing = d3.selectAll('path',function(a){
-        console.log('A ',a)}
-        );
-
-
-      
       /////////////////////////
       /////Bringing in other json
       d3.json("data.json",function(error,datum){
@@ -107,17 +110,11 @@ d3.json("us.json", function(error, us) {
           var people = datum.nodes
           
           people.forEach(function(person){
-            
             var state =person.location;
             var thisState = d3.select('path[class*='+state+']')
+            stateHeat[state]+=1;
+          });
           
-            if(!stateHeat[state]){
-              stateHeat[state] = 1;
-            }
-            else {
-              stateHeat[state]+=1}
-
-          })
           
           svg.selectAll(".subunit")
             .style('fill',function(d){
@@ -127,8 +124,7 @@ d3.json("us.json", function(error, us) {
             })   
 
 
-
-
+  //Need to repurpose this for heatmaps
   //Building hover tooltip
   //has to be inside d3.json build for async reasons
   var tooltip = d3.select('body').append('div')
@@ -161,7 +157,7 @@ d3.json("us.json", function(error, us) {
               .style('opacity', 0)
       })
 
-
+      ////////////End tooltip
 
      
 
