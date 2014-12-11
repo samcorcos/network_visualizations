@@ -79,21 +79,8 @@ var createGrouped = function() {
     .call(force.drag)
     .on("mousedown", function() { d3.event.stopPropagation(); })
 
-
-  // // Build nodes
-  // var nodes = d3.range(people.length).map(function(i) {
-  //
-  //   // Add data in nodes
-  //   var nodeTemp = {index: i};
-  //   for (var name in people[i]) {
-  //     nodeTemp[name] = people[i][name];
-  //   }
-  //   return nodeTemp;
-  // });
-
   d3.select("#grouped-network")
   .on("mousedown", mousedown);
-
 
   var groups = {
     'law': {x:500, y:450},
