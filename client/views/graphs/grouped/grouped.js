@@ -9,28 +9,26 @@ Template.grouped.rendered = function() {
 
   var fill = d3.scale.category20(); // "category20" is a shortcut for creating 20 unique colors. there is also category10.
 
-  // This is the part that I will have to change to use .json data at some point
-  // Right now it's just creating 100 nodes with nothing else going on
-  var nodes = d3.range(100).map(function(i) {
-
-    if( i % 2 === 0) {
-      return { index: i ,
-        group: 'A'};
-    }
-    else{
-      return { index: i ,
-        group: 'B'};
-    }
-
-  })
-
 
   // creating a new "session variable" for all the nodes, making the json data accessible outside of hte json function
-  d3.json("data.json", function(error, people) {
+
+  // Get data from json file
+  d3.json("./data.json", function(error, people) {
     Session.set("people", people);
-  })
-  // "session.get" is how you call the data you "set" out of the ether.
-  console.log(Session.get("people"))
+  });
+  var people = Session.get("people").nodes;
+
+
+  // Build nodes
+  var nodes = d3.range(people.length).map(function(i) {
+
+    // Add data in nodes
+    var nodeTemp = {index: i};
+    for (var name in people[i]) {
+      nodeTemp[name] = people[i][name];
+    }
+    return nodeTemp;
+  });
 
 
 
@@ -73,11 +71,15 @@ Template.grouped.rendered = function() {
     .on("mousedown", mousedown);
 
 
-    var groups = { 'A': {x:123, y:456},
-                   'B': {x:456, y:123}}
+    var groups = { 'law': {x:500, y:450},
+                   'media': {x:400, y:250},
+                   'entrepreneur': {x:1000, y:0},
+                   'finance': {x:1000, y:600},
+                   'fish_monger': {x:0, y:0},
+                   'retail': {x:0, y:600},
+                   'technology': {x:500, y:50}}
   function tick(e) {
 
-    // debugger;
     // This is where the clustering happens... I'm not sure how, but it is.
     // var k = 6 * e.alpha; // "alpha" is the "cooling factor" that slows down the nodes over time. You'll notice that the nodes start the simulation moving quickly, then eventually settle into place. That's because of alpha (http://vallandingham.me/bubble_charts_in_d3.html).
     // nodes.forEach(function(o,i) {
@@ -85,13 +87,15 @@ Template.grouped.rendered = function() {
     //   o.x += i & 2 ? k : -k;
     // });
 
-    var k = e.alpha * .01;
+    var k = e.alpha * .1;
     nodes.forEach(function(node) {
-      var center = groups[node.group]; // here you want to set center to the appropriate [x,y] coords
+
+      var center = groups[node.occupation]; // here you want to set center to the appropriate [x,y] coords
       node.x += (center.x - node.x) * k;
       node.y += (center.y - node.y) * k;
 
     });
+
 
     node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
