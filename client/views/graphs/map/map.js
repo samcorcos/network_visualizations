@@ -8,12 +8,6 @@ Template.map.rendered = function() {
   var height = 600,
       width = 1000;
 
-  var color = d3.scale.ordinal()
-    .domain([0, 1])
-    .range(["#bbb", "FFF"]);
-
-  // var color = d3.scale.category20()
-
   // d3.select("#concentration-map")
   //   .append("svg")
   //   .attr({
@@ -44,24 +38,6 @@ Template.map.rendered = function() {
   //   });
 
 // This part is the main problem........ I can't get the necessary data out of the json file
-
-
-// var projection = d3.geo.albers()
-//     .rotate([96, 0])
-//     .center([-.6, 38.7])
-//     .parallels([29.5, 45.5])
-//     .scale(500)
-//     .translate([width / 2, height / 2]);
-
-// var projection = d3.geo.conicConformal()
-//     .rotate([98, 0])
-//     .center([0, 38])
-//     .parallels([29.5, 45.5])
-//     .scale(500)
-//     .translate([width / 2, height / 2])
-//     .precision(.1);
-
-
 
 var projection = d3.geo.albersUsa()
     .scale(1000)
@@ -94,20 +70,64 @@ d3.json("us.json", function(error, us) {
       .attr("class", function(d) { return "subunit " + d.id; }) 
       //added id in above line to use as selector: ex US-NY
       .attr("d", path)
-      .style('fill',function(d){
-        return color(Math.random())
-      })
-      
+      .style('fill','#FFF')
+      // .style('fill',function(d){
+      //   return color(Math.random())
+      // })
+
 
   /////////Gives state boundary line
   svg.insert('path','.graticule')
     .datum(topojson.feature(us, us.objects.subunits,function(a, b) { return a !== b; }))
     .attr('class','state-boundary')
     .attr("d", path)
-    .attr('stroke','#FFF') 
+    // .attr('stroke','#FFF') 
     .style('fill','none')
 
   
+
+  
+      var color = d3.scale.linear()
+            .domain([1,8])
+            .range(['#D1E0FF','red']);
+
+      var stateHeat={};
+
+      testing = d3.selectAll('path',function(a){
+        console.log('A ',a)}
+        );
+
+
+      
+      /////////////////////////
+      /////Bringing in other json
+      d3.json("data.json",function(error,datum){
+          //Datum.nodes is an array of people with keys
+          //name, occupation, location, gender, marital_status
+          var people = datum.nodes
+          
+          people.forEach(function(person){
+            
+            var state =person.location;
+            var thisState = d3.select('path[class*='+state+']')
+          
+            if(!stateHeat[state]){
+              stateHeat[state] = 1;
+            }
+            else {
+              stateHeat[state]+=1}
+
+          })
+          
+          svg.selectAll(".subunit")
+            .style('fill',function(d){
+              var abbrev = d.id.split('-').pop();
+              
+              return color(stateHeat[abbrev])
+            })   
+
+
+
 
   //Building hover tooltip
   //has to be inside d3.json build for async reasons
@@ -128,6 +148,7 @@ d3.json("us.json", function(error, us) {
         tooltip.transition()
           .style('opacity', .9)
         tooltip.html(stateAbbrev)
+        // tooltip.html(stateAbbrev+'<br>'+stateHeat[stateAbbrev])
           .style('left', (d3.event.pageX -15) + 'px')
           .style('top', (d3.event.pageY - 30) + 'px')
       })
@@ -139,6 +160,12 @@ d3.json("us.json", function(error, us) {
             tooltip.transition().duration(500)
               .style('opacity', 0)
       })
+
+
+
+     
+
+      })  
 })
 ///////////////////////////////
 //End Map
@@ -148,39 +175,6 @@ d3.json("us.json", function(error, us) {
 
 }
 
-//   var statePaths = d3.json("states.js", function(error, states) {
-//     if (error) console.error(error);
-//     console.log(states.statePaths);
-//     return states.statePaths;
-//   });
-
-
-
-//   var uStates={};
-
-//   uStates.draw = function(id, data, toolTip){
-//     function mouseOver(d){
-//       d3.select("#tooltip").transition().duration(200).style("opacity", .9);
-
-//       d3.select("#tooltip").html(toolTip(d.n, data[d.id]))
-//       .style("left", (d3.event.pageX) + "px")
-//       .style("top", (d3.event.pageY - 28) + "px");
-//     }
-
-//     function mouseOut(){
-//       d3.select("#tooltip").transition().duration(500).style("opacity", 0);
-//     }
-
-//     d3.select(id).selectAll(".state")
-//     .data(statePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;})
-//     .style("fill",function(d){ return data[d.id].color; })
-//     .on("mouseover", mouseOver).on("mouseout", mouseOut);
-//   }
-//   this.uStates=uStates;
-
-//   uStates.draw("#statesvg", sampleData, tooltipHtml);
-
-// }
 
 // Template.map.events({
 //   "click .tab": function(event, template) {

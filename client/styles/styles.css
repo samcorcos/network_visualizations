@@ -102,8 +102,8 @@ ul.tabs .indicator {
 
 
 /* Styles for Map Visualization */
-  .state {
-    fill: none;
+  .subunit {
+    fill: grey;
     stroke: #A9A9A9;
     stroke-width: 1;
   }
@@ -160,3 +160,4 @@ ul.tabs .indicator {
 .content-display {
   display: block;
 }
+
