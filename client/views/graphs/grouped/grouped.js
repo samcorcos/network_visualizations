@@ -9,41 +9,54 @@ Template.grouped.rendered = function() {
   });
 };
 
-var height = 600,
-    width = 1000;
+// Create the template when it's rendered
+// Within the function, call all the other functions
+
+var height = 600;
+var width = 1000;
+
+var groups = {
+  'law': {x:500, y:450},
+  'media': {x:400, y:250},
+  'entrepreneur': {x:1000, y:0},
+  'finance': {x:1000, y:600},
+  'fish_monger': {x:0, y:0},
+  'retail': {x:0, y:600},
+  'technology': {x:500, y:50}
+}
 
 var fill = d3.scale.category10();
 
-var genderColor = function() {
+var selectColor = function(colorSelector) {
   var nodes = Session.get("nodes");
   d3.select("#grouped-network")
     .selectAll(".node")
-      .style("fill", function(d,i) { return fill(d.gender); })
-      .style("stroke", function(d,i) { return d3.rgb(fill(d.gender)).darker(2); })
+      .style("fill", function(d,i) { return fill(d[colorSelector]); })
+      .style("stroke", function(d,i) { return d3.rgb(fill(d[colorSelector])).darker(2); })
 }
 
-var occupationColor = function() {
-  var nodes = Session.get("nodes");
-  d3.select("#grouped-network")
-    .selectAll(".node")
-      .style("fill", function(d,i) { return fill(d.occupation); })
-      .style("stroke", function(d,i) { return d3.rgb(fill(d.occupation)).darker(2); })
-}
+var selectGroup = function(groupSelector) {
+  if (groupSelector == "occupation") {
+    var groups = {
+      'law': {x:500, y:450},
+      'media': {x:400, y:250},
+      'entrepreneur': {x:1000, y:0},
+      'finance': {x:1000, y:600},
+      'fish_monger': {x:0, y:0},
+      'retail': {x:0, y:600},
+      'technology': {x:500, y:50}
+    }
+    return groups;
+  }
+  if (groupsSelector == "gender") {
+    var groups = {
+      'male': {x:100, y:100},
+      'female': {x:300, y:300}
+    }
+  }
 
-var locationColor = function() {
-  var nodes = Session.get("nodes");
-  d3.select("#grouped-network")
-  .selectAll(".node")
-  .style("fill", function(d,i) { return fill(d.location); })
-  .style("stroke", function(d,i) { return d3.rgb(fill(d.location)).darker(2); })
-}
 
-var maritalColor = function() {
-  var nodes = Session.get("nodes");
-  d3.select("#grouped-network")
-  .selectAll(".node")
-  .style("fill", function(d,i) { return fill(d.marital_status); })
-  .style("stroke", function(d,i) { return d3.rgb(fill(d.marital_status)).darker(2); })
+
 }
 
 var createGrouped = function() {
@@ -81,16 +94,6 @@ var createGrouped = function() {
   d3.select("#grouped-network")
   .on("mousedown", mousedown);
 
-  var groups = {
-    'law': {x:500, y:450},
-    'media': {x:400, y:250},
-    'entrepreneur': {x:1000, y:0},
-    'finance': {x:1000, y:600},
-    'fish_monger': {x:0, y:0},
-    'retail': {x:0, y:600},
-    'technology': {x:500, y:50}
-  }
-
   function tick(e) {
 
     var k = e.alpha * .1;
@@ -114,21 +117,55 @@ var createGrouped = function() {
     });
     force.resume();
   }
-  occupationColor();
+
+  selectColor("occupation");
+
+
+
+  var tooltip = d3.select('#grouped-network').append("div")
+    .style('position', 'absolute')
+    .style('padding', '0 10px')
+    .style('background', 'black')
+    .style('color','white')
+    .style('opacity', 0) // setting to 0 because we dont want it to show when the graphic first loads
+
+  d3.selectAll('.node').on('mouseover', function(d) {
+    // var stateAbbrev = d.id.split('-')[1];
+    var person = d.name;
+    d3.select(this)
+      .style('opacity', 0.5)
+      tooltip.transition()
+      .style('opacity', .9)
+      tooltip.html(person)
+      // tooltip.html(stateAbbrev+'<br>'+stateHeat[stateAbbrev])
+      .style('left', (d3.event.pageX -15) + 'px')
+      .style('top', (d3.event.pageY - 30) + 'px')
+  })
+
+
+  .on('mouseout', function(d) {
+    d3.select(this)
+    .style('opacity', 1)
+    tooltip.transition().duration(500)
+    .style('opacity', 0)
+
+  })    ////////////End tooltip
+
+
 }
 
 // I want the information to be perturbed when you click on a new tab.
 Template.grouped.events({
   "click #tab1": function(e,t) {
-    occupationColor();
+    selectColor("occupation");
   },
   "click #tab2": function(e,t) {
-    locationColor();
+    selectColor("location")
   },
   "click #tab3": function(e,t) {
-    genderColor();
+    selectColor("gender")
   },
   "click #tab4": function(e,t) {
-    maritalColor();
+    selectColor("marital_status")
   }
 })
