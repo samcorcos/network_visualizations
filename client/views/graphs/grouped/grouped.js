@@ -7,8 +7,6 @@ Template.grouped.rendered = function() {
     Session.set("nodes", nodes);
     createGrouped();
   });
-
-
 };
 
 var height = 600,
