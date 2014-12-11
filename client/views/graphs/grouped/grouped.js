@@ -5,9 +5,10 @@ Template.grouped.rendered = function() {
   d3.json("./data.json", function(error, people) {
     var nodes = people.nodes;
     Session.set("nodes", nodes);
+    createGrouped();
   });
 
-  createGrouped();
+
 };
 
 var height = 600,
