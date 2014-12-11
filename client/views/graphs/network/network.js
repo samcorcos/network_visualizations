@@ -1,16 +1,20 @@
 Template.network.rendered = function() {
+  createChart();
+};
 
-  var width = 1000,
-  height = 600;
+var width = 1000,
+    height = 600;
+
+var createChart = function() {
 
   var force = d3.layout.force()
-  .size([width, height])
-  .charge(-400)
-  .linkDistance(40)
-  .on("tick", tick);
+    .size([width, height])
+    .charge(-400)
+    .linkDistance(40)
+    .on("tick", tick);
 
   var drag = force.drag()
-  .on("dragstart", dragstart);
+    .on("dragstart", dragstart);
 
   var svg = d3.select("#network-visualization")
   .append("svg")
@@ -19,20 +23,21 @@ Template.network.rendered = function() {
     width: width
   })
 
-  var link = svg.selectAll(".link"),
-  node = svg.selectAll(".node");
+  var link = svg.selectAll(".link");
+  var node = svg.selectAll(".node");
 
-  d3.json("network.json", function(error, graph) {
+  d3.json("data.json", function(error, people) {
+
     force
-    .nodes(graph.nodes)
-    .links(graph.links)
+    .nodes(people.nodes)
+    .links(people.links)
     .start();
 
-    link = link.data(graph.links)
+    link = link.data(people.links)
     .enter().append("line")
     .attr("class", "link");
 
-    node = node.data(graph.nodes)
+    node = node.data(people.nodes)
     .enter().append("circle")
     .attr("class", "node")
     .attr("r", 12)
@@ -41,15 +46,6 @@ Template.network.rendered = function() {
   });
 
   function tick() {
-
-    // This is where we can run the clustering algorithm using position Verlet integration: http://bl.ocks.org/mbostock/1021841
-    // The first clustering should be by occupation
-
-    // var k = 6* e.alpha;
-    // nodes.forEach(function(o, i) {
-    //   o.y += i & 1 ? k : -k;
-    //   o.x += i & 2 ? k : -k;
-    // });
 
     link.attr("x1", function(d) { return d.source.x; })
     .attr("y1", function(d) { return d.source.y; })
@@ -68,12 +64,11 @@ Template.network.rendered = function() {
     d3.select(this).classed("fixed", d.fixed = true);
   }
 
+}
 
 
 
 
-
-};
 
 Template.network.events({
 
