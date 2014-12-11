@@ -153,11 +153,15 @@ ul.tabs .indicator {
     text-align:center;
   }
 
-.content-hidden {
+
+/* CSS for getting the dropdown menus to work in maps */
+
+/* ul.tabs ul {
   display: none;
 }
 
-.content-display {
+ul.tabs li:hover > ul {
   display: block;
 }
 
+*/

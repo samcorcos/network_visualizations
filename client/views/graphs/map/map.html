@@ -9,42 +9,15 @@
       </div>
     </div>
     <div class="row">
+      <!-- My stupid dropdowns arent working... I'll fix this later -->
       <ul class="tabs">
-        <li class="tab col s2">
-          <a href="" class="dropdown-button">Occupation &#x25BE;</a>
-          <ul class='content-hidden'>
-            <li><a href="#!">Law</a></li>
-            <li><a href="#!">Finance</a></li>
-            <li><a href="#!">Entrepreneur</a></li>
-          </ul>
-        </li>
-        <li class="tab col s2">
-          <a href="" class="dropdown-button">Interests &#x25BE;</a>
-          <ul class="content-hidden">
-            <li><a href="">Hiking</a></li>
-            <li><a href="">Boating</a></li>
-            <li><a href="">Running</a></li>
-            <li><a href="">Cooking</a></li>
-            <li><a href="">Crepes</a></li>
-            <li><a href="">Hockey</a></li>
-            <li><a href="">Poker</a></li>
-          </ul>
-        </li>
-        <li class="tab col s2">
-          <a href="" class="dropdown-button">Gender &#x25BE;</a>
-          <ul class="content-hidden">
-            <li><a href="">Male</a></li>
-            <li><a href="">Female</a></li>
-          </ul>
-        </li>
-        <li class="tab col s2">
-          <a href="">Marital Status &#x25BE;</a>
-          <ul class="content-hidden">
-            <li><a href="">Married</a></li>
-            <li><a href="">Single</a></li>
-            <li><a href="">Other</a></li>
-          </ul>
-        </li>
+        <li class="tab col s2"><a href="">Finance</a></li>
+        <li class="tab col s2"><a href="">Technology</a></li>
+        <li class="tab col s2"><a href="">Law</a></li>
+        <li class="tab col s2"><a href="">Hiking</a></li>
+        <li class="tab col s2"><a href="">Running</a></li>
+        <li class="tab col s2"><a href="">Male</a></li>
+        <li class="tab col s2"><a href="">Female</a></li>
       </ul>
     </div>
     <div class="row">
@@ -54,4 +27,52 @@
       </div>
     </div>
   </div>
+</template>
+
+
+<template name="mapTabOne">
+  <li class="tab col s2">
+    <a href="" class="dropdown-button">Occupation &#x25BE;</a>
+    <ul>
+      <li><a href="#!">Law</a></li>
+      <li><a href="#!">Finance</a></li>
+      <li><a href="#!">Entrepreneur</a></li>
+    </ul>
+  </li>
+</template>
+
+<template name="mapTabTwo">
+  <li class="tab col s2">
+    <a href="" class="dropdown-button">Interests &#x25BE;</a>
+    <ul class="content-hidden">
+      <li><a href="">Hiking</a></li>
+      <li><a href="">Boating</a></li>
+      <li><a href="">Running</a></li>
+      <li><a href="">Cooking</a></li>
+      <li><a href="">Crepes</a></li>
+      <li><a href="">Hockey</a></li>
+      <li><a href="">Poker</a></li>
+    </ul>
+  </li>
+</template>
+
+<template name="mapTabThree">
+  <li class="tab col s2">
+    <a href="" class="dropdown-button">Gender &#x25BE;</a>
+    <ul class="content-hidden">
+      <li><a href="">Male</a></li>
+      <li><a href="">Female</a></li>
+    </ul>
+  </li>
+</template>
+
+<template name="mapTabFour">
+  <li class="tab col s2">
+    <a href="">Marital Status &#x25BE;</a>
+    <ul class="content-hidden">
+      <li><a href="">Married</a></li>
+      <li><a href="">Single</a></li>
+      <li><a href="">Other</a></li>
+    </ul>
+  </li>
 </template>
