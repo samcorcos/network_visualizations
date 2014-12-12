@@ -15,6 +15,16 @@ Template.grouped.rendered = function() {
 var height = 600;
 var width = 1000;
 
+var height = 600;
+var width = 1000;
+var layoutGravity = -0.01;
+var damper = 0.1;
+var nodes;
+var circles;
+var svg;
+var force;
+
+
 var fill = d3.scale.category10();
 
 var selectColor = function(colorSelector) {
@@ -27,7 +37,7 @@ var selectColor = function(colorSelector) {
 
 var genderGroup = function() {
 
-  var force = d3.layout.force()
+  force = d3.layout.force()
     .nodes(nodes)
     .size([width, height])
     .on("tick", tick)
@@ -88,12 +98,11 @@ var occupationGroup = function() {
   selectColor("occupation");
 }
 
-var nodes;
 
 var createGrouped = function() {
   nodes = Session.get("nodes");
 
-  var svg = d3.select("#grouped-network")
+  svg = d3.select("#grouped-network")
     .append("svg")
     .attr({
       height: height,
@@ -116,7 +125,7 @@ var createGrouped = function() {
   }
 
   // Build nodes with bound data
-  var force = d3.layout.force()
+  force = d3.layout.force()
     .nodes(nodes)
     .size([width, height])
     .on("tick", tick)

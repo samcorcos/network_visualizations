@@ -41,3 +41,6 @@ Website for network visuals
 - Get state path data out of the states.js(json) file and separate logic from static data
 - Layer svgs on the states to give them depth as well as color
 - Map should filter based on certain criteria... Probably not generic search. Dropdown?
+
+- Other map options: http://bl.ocks.org/mbostock/4055908
+- http://mbostock.github.io/d3/talk/20111116/airports.html
