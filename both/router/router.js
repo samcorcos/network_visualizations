@@ -24,4 +24,5 @@ Router.map(function () {
 	this.route("grouped", {path: "/grouped", controller: "GroupedController"});
 	this.route("network", {path: "/network", controller: "NetworkController"});
 	this.route("map", {path: "/map", controller: "MapController"});
+	this.route("grouped2", {path: "/grouped2", controller: "Grouped2Controller"});
 });
