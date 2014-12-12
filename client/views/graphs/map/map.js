@@ -60,9 +60,12 @@ d3.json("us.json", function(error, us) {
         //Getting state abbreviation out of DOM
         var classString = path.className.animVal;
         var state = classString.slice(classString.length-2)
-        stateHeat[state]=0;
-      })
+        stateHeat[state]={};
+        stateHeat[state]['count']=0
+        stateHeat[state]['people']=[];
 
+      })
+      
       /////////////////////////
       /////Bringing in other json
       d3.json("data.json",function(error,datum){
@@ -73,15 +76,17 @@ d3.json("us.json", function(error, us) {
           people.forEach(function(person){
             var state =person.location;
             var thisState = d3.select('path[class*='+state+']')
-            stateHeat[state]+=1;
+            stateHeat[state]['count']+=1;
+            stateHeat[state]['people'].push(person);
+            // stateHeat[state]['people'].push(person);
+            
           });
-          
+          console.log(stateHeat)
           
           svg.selectAll(".subunit")
             .style('fill',function(d){
               var abbrev = d.id.split('-').pop();
-              
-              return color(stateHeat[abbrev])
+              return color(stateHeat[abbrev]['count'])
             })   
 
 

@@ -28,7 +28,7 @@
     {"name": "Kayla", "occupation": "retail", "location": "TX", "gender": "female", "marital_status": "single", "interests": ["poker", "running"]},
     {"name": "Clint", "occupation": "retail", "location": "CA", "gender": "male", "marital_status": "single", "interests": ["hockey", "crepes"]},
     {"name": "Zach", "occupation": "retail", "location": "MN", "gender": "male", "marital_status": "single", "interests": ["hiking", "hockey"]},
-    {"name": "Nancy", "occupation": "retail", "location": "LS", "gender": "female", "marital_status": "single", "interests": ["hiking", "crepes"]},
+    {"name": "Nancy", "occupation": "retail", "location": "LA", "gender": "female", "marital_status": "single", "interests": ["hiking", "crepes"]},
     {"name": "Albert", "occupation": "retail", "location": "AR", "gender": "male", "marital_status": "married", "interests": ["hiking", "cooking"]},
     {"name": "Eleanor", "occupation": "finance", "location": "CO", "gender": "female", "marital_status": "single", "interests": ["hiking", "cooking"]},
     {"name": "Kim", "occupation": "finance", "location": "IL", "gender": "female", "marital_status": "single", "interests": ["hiking", "running"]},
